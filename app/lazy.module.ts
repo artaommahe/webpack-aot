@@ -6,7 +6,7 @@ import { SharedModule } from './shared/shared.module';
 
 @Component({
   selector: 'lazy-comp',
-  template: 'lazy!  <shared-component></shared-component>'
+  template: 'lazy!  <shared-component></shared-component> <a routerLink="/">TO HOME</a>'
 })
 export class LazyComponent {}
 
