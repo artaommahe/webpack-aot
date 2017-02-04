@@ -1,10 +1,12 @@
 import {NgModule, Component} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {HttpModule, Http} from '@angular/http';
+
+import { SharedModule } from './shared/shared.module';
+
 
 @Component({
   selector: 'lazy-comp',
-  template: 'lazy!'
+  template: 'lazy!  <shared-component></shared-component>'
 })
 export class LazyComponent {}
 
@@ -12,15 +14,14 @@ export class LazyComponent {}
   imports: [
     RouterModule.forChild([
      {path: '', component: LazyComponent, pathMatch: 'full'},
-     {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},
-     {path: 'lazy-feature', loadChildren: './feature/lazy-feature.module#LazyFeatureModule'}
     ]),
-    HttpModule
+
+    SharedModule
   ],
   declarations: [LazyComponent]
 })
 export class LazyModule {
-  constructor(http: Http) {}
+  constructor() {}
 }
 
 export class SecondModule {}
