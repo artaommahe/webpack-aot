@@ -14,6 +14,13 @@ module.exports = {
         filename: 'app.main.js'
     },
     plugins: [
+        // Comment this for lazy routes chunks work
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            __dirname
+        ),
+
+
         new ngToolsWebpack.AotPlugin({
             tsConfigPath: './tsconfig.json',
             entryModule: __dirname + '/app/app.module#AppModule'
@@ -25,7 +32,7 @@ module.exports = {
             minimize: true,
             debug: false
         }),
-        new webpack.optimize.UglifyJsPlugin({
+        /*new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             },
@@ -33,7 +40,7 @@ module.exports = {
                 comments: false
             },
             sourceMap: true
-        })
+        })*/
     ],
     module: {
         loaders: [
